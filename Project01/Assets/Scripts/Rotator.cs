@@ -8,12 +8,12 @@ public class Rotator : MonoBehaviour
 
 	void Update ()
 	{
-		if (Input.GetKeyUp (KeyCode.Return)) 
-		{
-			m_rotationEnabled = !m_rotationEnabled;
-		}
-
 		if(m_rotationEnabled)
 			transform.Rotate(new Vector3(1,0,0), m_angleSpeed * Time.deltaTime);
+	}
+
+	public void ToggleRotation()
+	{
+		m_rotationEnabled = !m_rotationEnabled;
 	}
 }

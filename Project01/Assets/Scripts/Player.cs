@@ -38,10 +38,10 @@ public class Player : MonoBehaviour
 
 				float squaredDistance = (leverPos.x - myPos.x) * (leverPos.x - myPos.x) + (leverPos.y - myPos.y) * (leverPos.y - myPos.y) + (leverPos.z - myPos.z) * (leverPos.z - myPos.z);
 
-				Debug.Log ("distance to lever " + squaredDistance + " activationSquareDistance " + activationSquareDistance);
 
 				if(squaredDistance < activationSquareDistance)
 				{
+					Debug.Log ("distance to lever " + squaredDistance + " activationSquareDistance " + activationSquareDistance);
 
 					lever.Activate();
 					break;

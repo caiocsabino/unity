@@ -6,6 +6,8 @@ public class Lever : MonoBehaviour {
 	public GameObject m_rotator;
 	private Rotator m_rotatorComponent;
 
+	private GameObject m_lever;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -13,6 +15,8 @@ public class Lever : MonoBehaviour {
 		{
 			m_rotatorComponent = m_rotator.GetComponent<Rotator>();
 		}
+
+
 
 	}
 	
@@ -27,6 +31,13 @@ public class Lever : MonoBehaviour {
 		if (m_rotatorComponent) 
 		{
 			m_rotatorComponent.ToggleRotation();
+
+			GameObject actualLever = transform.FindChild("actualLever").gameObject;
+
+			if(actualLever)
+			{
+				actualLever.transform.Rotate (new Vector3 (0, 1, 0), -90);
+			}
 		}
 	}
 }

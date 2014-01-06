@@ -9,11 +9,15 @@ public class Player : MonoBehaviour
 
 	public float activationSquareDistance = 16.0f;
 
+	public static Vector3 m_spawnCharacterPosition = new Vector3(16.2f,1.72f,6.67f);
+
 	// Use this for initialization
 	void Start () 
 	{
 		m_manager = GameObject.FindGameObjectWithTag("gameManager");
 		m_managerScript = m_manager.GetComponent<Manager> ();
+
+		transform.position = m_spawnCharacterPosition;
 	}
 	
 	// Update is called once per frame

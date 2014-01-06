@@ -26,6 +26,8 @@ public class Windmill : MonoBehaviour {
 				//openAnimation.Play();
 				m_door.transform.animation.Play("anim_door_open");
 				//m_door.transform.Rotate(new Vector3(0,1,0), 90);
+
+
 			}
 		}
 	}

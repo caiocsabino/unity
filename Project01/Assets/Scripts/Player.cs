@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 
 	public float activationSquareDistance = 16.0f;
 
-	public static Vector3 m_spawnCharacterPosition = new Vector3(3.62893f,2.188742f,36.66432f);
+	public Vector3 m_spawnCharacterPosition = new Vector3(3.62893f,2.188742f,36.66432f);
 
 	// Use this for initialization
 	void Start () 

@@ -15,8 +15,5 @@ public class Manager : MonoBehaviour {
 	
 	}
 
-	void OnMouseDown()
-	{
-		Debug.Log ("click");
-	}
+
 }

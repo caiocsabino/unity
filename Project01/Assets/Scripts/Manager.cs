@@ -14,4 +14,9 @@ public class Manager : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	void OnMouseDown()
+	{
+		Debug.Log ("click");
+	}
 }

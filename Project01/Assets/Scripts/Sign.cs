@@ -16,6 +16,9 @@ public class Sign : MonoBehaviour {
 	public string m_textClose = "Close";
 	public Vector2 m_closePosRatio = new Vector2(0.11f, 0.12f);
 	public Vector2 m_closeSize = new Vector2(50,20);
+
+	private bool m_dragging = false;
+	private Vector2 m_draggingOffset = new Vector2(0,0);
 	
 	public string m_text = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 	
@@ -29,13 +32,12 @@ public class Sign : MonoBehaviour {
 		
 	}
 	
-	void OnMouseDown()
+	void OnMouseUp()
 	{
 		if (m_playerInRange) 
 		{
 			m_showingMessage = true;
-			Debug.Log ("click");
-			
+
 			GameObject player = GameObject.FindGameObjectWithTag("Player");
 			//player.SetActive(false);
 		}
@@ -53,7 +55,7 @@ public class Sign : MonoBehaviour {
 	
 	void OnGUI () 
 	{
-		Debug.Log ("picles");
+
 		if (m_showingMessage) 
 		{
 			//if (GUI.Button (new Rect (10, 10, 100, 50), icon)) {
@@ -64,8 +66,18 @@ public class Sign : MonoBehaviour {
 			                          Screen.height * 0.5f - Screen.height * m_sizeRatios.y * 0.5f, 
 			                          Screen.width * m_sizeRatios.x,
 			                          Screen.height * m_sizeRatios.y);
-			
-			GUI.DrawTexture(imageRect, background);
+
+			if(m_dragging)
+			{
+				Vector2 mousePos = Event.current.mousePosition;
+				imageRect.x += mousePos.x - m_draggingOffset.x;
+				imageRect.y += mousePos.y - m_draggingOffset.y;
+				GUI.DrawTexture(imageRect, background);
+			}
+			else
+			{
+				GUI.DrawTexture(imageRect, background);
+			}
 			
 			Rect textAreaRect = new Rect(Screen.width * m_textAreaPosRatios.x, 
 			                             Screen.height * m_textAreaPosRatios.y,
@@ -81,6 +93,22 @@ public class Sign : MonoBehaviour {
 				GameObject player = GameObject.FindGameObjectWithTag("Player");
 				player.SetActive(true);
 				m_showingMessage = false;
+			}
+
+			if(Event.current.type == EventType.MouseDown && !m_dragging)
+			{
+				Vector2 mousePos = Event.current.mousePosition;
+				if(imageRect.Contains(mousePos))
+				{
+					Vector2 topPos = new Vector2(imageRect.x, imageRect.y);
+					m_dragging = true;
+					m_draggingOffset = mousePos;
+				}
+
+			}
+			else if(Event.current.type == EventType.MouseUp)
+			{
+				m_dragging = false;
 			}
 		}
 	}
